@@ -1,0 +1,20 @@
+body {
+    background-color: peachpuff;
+}
+
+#header {
+    text-align: center;
+}
+
+#click {
+    align-items: center; 
+}
+
+.quiz {
+    text-align: center;
+}
+
+.timer{
+    font-weight: bold;
+    text-align: center;
+}
