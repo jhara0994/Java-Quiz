@@ -3,6 +3,7 @@ var quizEl = document.querySelector('#quiz');
 var quizQ = document.querySelector('#question');
 var quizA = document.querySelector('#answer');
 var startBtn = document.querySelector('#btn-start');
+var submitBtn = document.querySelector("#btn-submit");
 var results = document.querySelector('#results')
 var timerEl = document.querySelector('.timer');
 
@@ -62,22 +63,27 @@ var myQuestions = [
     },
 ]
 
-/*
+
 // function to show quiz 
 function showQuiz() {
-    body.append(myQuestions);
+    quizEl.style.display = "visible";
 
-    
+    myQuestions(question).append(quizQ);
+
+}
+
+/* for loop to append questions
     for(i = 0, i < myQuestions.length, i++) {
-        body.append(myQuestions);
+        quizQ.append(myQuestions(question));
     }
 }*/
 
 
 // function to set timer. 
 function setTime() {
-    headers.style.display = "none";
+    headers.style.visibility = "visible";
     startBtn.style.display = "none";
+    submitBtn.style.visibility = "visible";
     var timerInterval = setInterval(function() {
         
         secondsLeft--;
@@ -102,7 +108,11 @@ function getScore() {
     if (correctAnswer) {
         results.textContent(SCORE_POINTS)
     }
-
+    else {
+        results.textContent(WRONG_ANSWER)
+    }
+// store to localStorage
+    results = localStorage.getItem("results")
 }
 
 // clickability added to the start button. calls up the timer function and the quiz function.
@@ -110,4 +120,4 @@ startBtn.addEventListener("click", setTime);
 startBtn.addEventListener("click", showQuiz);
 
 // click added to show results when submitBtn is selected. 
-// submitBtn.addEventListener("click", showResults);
+submitBtn.addEventListener("click", getScore);

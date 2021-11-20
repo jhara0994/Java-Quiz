@@ -33,7 +33,7 @@ h2 {
 
 
 .quiz {
-    display: none;
+    visibility: hidden;
 }
 
 .btn {
@@ -41,11 +41,15 @@ h2 {
     padding: 10px;
     width: 150px;
     text-align: center;
-    background-color: lightgray
+    background-color: lightgray;
 }
 
 
 #timer{
     font-weight: bold;
     text-align: center;
+}
+
+#btn-submit {
+    visibility: hidden;
 }
