@@ -1,11 +1,17 @@
-var headers = document.querySelector('#header');
+var headers = document.querySelector('.headers');
+var quizEl = document.querySelector('#quiz');
 var quizQ = document.querySelector('#question');
 var quizA = document.querySelector('#answer');
-var startBtn = document.querySelector('#click');
+var startBtn = document.querySelector('#btn-start');
 var results = document.querySelector('#results')
 var timerEl = document.querySelector('.timer');
 
 var secondsLeft = 120;
+
+const SCORE_POINTS = 50;
+const MAX_QUESTIONS = 5; 
+const WRONG_ANSWER = -10;
+
 
 // quiz questions
 var myQuestions = [
@@ -56,8 +62,22 @@ var myQuestions = [
     },
 ]
 
+/*
+// function to show quiz 
+function showQuiz() {
+    body.append(myQuestions);
+
+    
+    for(i = 0, i < myQuestions.length, i++) {
+        body.append(myQuestions);
+    }
+}*/
+
+
 // function to set timer. 
 function setTime() {
+    headers.style.display = "none";
+    startBtn.style.display = "none";
     var timerInterval = setInterval(function() {
         
         secondsLeft--;
@@ -69,36 +89,25 @@ function setTime() {
         }
 
     }, 1000);
-}
+};
 
 // function for sending message once the time has expired. 
 function sendMessage() {
     timerEl.textContent = "Game Over!";
-}
+};
 
-// function for showing questions
-function displayQuestions() {
-    headers.style.display = "none";
-    var output = [];
-    myQuestions.forEach(currentQuestion, questionNumber) => {
-        var answers = [];
-        for (letter in currentQuestions.answers) {
-            answers.push(
-                <label>
-                    <input type="radio" name="question${questionNumber}" value="${letters}"></input>
-
-                </label>
-            )
-
-        }
-
+// function to get a score and store the score to localStorage.
+function getScore() {
+    var correctAnswer = []
+    if (correctAnswer) {
+        results.textContent(SCORE_POINTS)
     }
 
 }
 
 // clickability added to the start button. calls up the timer function and the quiz function.
 startBtn.addEventListener("click", setTime);
-startBtn.addEventListener("click", displayQuestions);
+startBtn.addEventListener("click", showQuiz);
 
 // click added to show results when submitBtn is selected. 
-submitBtn.addEventListener("click", showResults);
+// submitBtn.addEventListener("click", showResults);
