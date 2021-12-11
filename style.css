@@ -39,14 +39,36 @@ h2 {
     background-color: lightgray;
 }
 
+.question-container {
+    font-size: 26px;
+    font-weight: bold;
+    border: dotted 2px black;
+    margin-right: 100px;
+    margin-left: 100px;
+
+}
+
+.choice-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin-right: 100px;
+    margin-left: 100px;
+}
+
 .hide {
-    visibility: hidden
+    visibility: hidden;
 }
 
 .show {
-    visibility: visible
+    visibility: visible;
 }
 
+.option {
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 
 #timer{
     font-weight: bold;
