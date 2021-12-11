@@ -13,6 +13,8 @@ var op1 = document.getElementById('op1');
 var op2 = document.getElementById('op2');
 var op3 = document.getElementById('op3');
 var op4 = document.getElementById('op4');
+var enterInit = document.querySelector('.enter-initials')
+var scoringNav = document.querySelector('.scoring.nav')
 
 var timerEl = document.querySelector('#timer')
 var question = document.querySelector("#question")
@@ -21,53 +23,38 @@ var quizScore = document.querySelector('#score')
 // quiz questions
 var myQuestions = [
     {
-        id: 0,
         question: "What is the method use to print data to your log?",
-        answers: {
-            a: "console.log",
-            b: "application.log",
-            c: "google.console",
-        },
-        correctAnswer: "a"
+            answerA: "console.log",
+            answerB: "application.log",
+            answerC: "google.console",
+        correctAnswer: "answerA"
     },
     {
-        id: 1,
         question: "What code is used to add text to a variable?",
-        answers: {
-            a: ".append",
-            b: ".paragraph",
-            c: ".textContent",
-        },
+            answerA: ".append",
+            answerB: ".paragraph",
+            answerC: ".textContent",
         correctAnswer: "c"
     },
     {
-        id: 2,
         question: "What code is used to add a variable's value to certain portion the HTML?",
-        answers: {
-            a: ".appendChild",
-            b: ".alert",
-            c: ".addList",
-        },
+            answerA: ".appendChild",
+            answerB: ".alert",
+            answerC: ".addList",
         correctAnswer: "a",
     },
     {
-        id: 3,
         question: "How do you connect a variable to a specific HTML element?",
-        answers: {
-            a: ".document",
-            b: "document.querySelector",
-            c: ".setAttribute",
-        },
+            answerA: ".document",
+            answerB: "document.querySelector",
+            answerC: ".setAttribute",
         correctAnswer: "b",
     },
     {
-        id: 4,
         question: "What code is essential to blocking the browser's default behavior?",
-        answers: {
-            a: ".reset",
-            b: "event.reset()",
-            c: "event.preventDefault()",
-        },
+            answerA: ".reset",
+            answerB: "event.reset()",
+            answerC: "event.preventDefault()",
         correctAnswer: "c",
     },
 ]
@@ -110,9 +97,9 @@ function timeOut() {
 function showQuestions () {
     let q = myQuestions[currentQuestionIndex]
     question.innerHTML = q.question
-    op1.innerHTML = q.answers.a
-    op2.innerHTML = q.answers.b
-    op3.innerHTML = q.answers.c
+    op1.innerHTML = q.answerA
+    op2.innerHTML = q.answerB
+    op3.innerHTML = q.answerC
 }
 
 //functions to check answer and send message once no more questions exist. 
@@ -120,6 +107,7 @@ var correctChoice = document.querySelector("#check-answer")
 
 function rightAnswer() {
     correctChoice.innerHTML = "Correct"
+    score + 20
 }
 
 function wrongAnswer() {
@@ -131,7 +119,6 @@ function scoreAnswer(answer) {
     correctChoice.classList.remove('hide')
 
     if(myQuestions[currentQuestionIndex].correctAnswer === answer) {
-        score ++
         rightAnswer()
     } else {
         wrongAnswer()
@@ -142,7 +129,7 @@ function scoreAnswer(answer) {
         showQuestions()
     } else {
         questionContainer.classList.add('hide')
-        scoreQuiz.innerHTML = score
+        scoreQuiz.textContent = score
         endQuestion()
     }
 }
@@ -150,8 +137,6 @@ function scoreAnswer(answer) {
 function endQuestion() {
     correctChoice.textContent = "Congrats! You have beat the clock. Press submit to store your score."
 }
-
-//
 
 // function to start quiz
 function startQuiz() {
@@ -162,10 +147,42 @@ function startQuiz() {
 startBtn.addEventListener("click", startQuiz);
 
 function storeScore() {
-    localStorage.setItem("scores", JSON.stringify(scores))
+    localStorage.setItem("score", JSON.stringify(scores))
     localStorage.setItem("initials", JSON.stringify(initials))
 }
 
-function scoreQuiz() {
+var highScore = document.querySelector(".highscores")
+var totalScore = document.querySelector(".total-score")
+var highInit = document.querySelector('.high-initials')
 
+function renderHighScore() {
+    totalScore.innerHTML = ""
+    highInit.innerHTML = ""
+    var initials = JSON.parse(localStorage.getItems("initials"))
+    var scores = JSON.parse(localStorage.getItem("score"))
+
+    for (var i = 0; i < initials.length; i++)
+        var initial = initials[i]
+        var score = scores[i]
+        totalScore.textContent = score
+        highInit.textContent = initial
+}
+
+submitBtn.addEventListener("click", submitBtnHandler)
+
+
+function submitBtnHandler() {
+    var initials = enterInit.value
+    var scoreEl = scoreQuiz.innerHTML
+
+    if (initials === "") {
+        return;
+    }
+        initials.push(initials)
+        scores.push(scoreEl)
+        enterInit.value = ""
+        storeScore()
+        renderHighScore()
+        scoringNav.classList.add('hide')
+        highScore.classList.remove('hide')
 }
