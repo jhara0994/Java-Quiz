@@ -34,28 +34,28 @@ var myQuestions = [
             answerA: ".append",
             answerB: ".paragraph",
             answerC: ".textContent",
-        correctAnswer: "c"
+        correctAnswer: "answerC"
     },
     {
         question: "What code is used to add a variable's value to certain portion the HTML?",
             answerA: ".appendChild",
             answerB: ".alert",
             answerC: ".addList",
-        correctAnswer: "a",
+        correctAnswer: "answerA",
     },
     {
         question: "How do you connect a variable to a specific HTML element?",
             answerA: ".document",
             answerB: "document.querySelector",
             answerC: ".setAttribute",
-        correctAnswer: "b",
+        correctAnswer: "answerB",
     },
     {
         question: "What code is essential to blocking the browser's default behavior?",
             answerA: ".reset",
             answerB: "event.reset()",
             answerC: "event.preventDefault()",
-        correctAnswer: "c",
+        correctAnswer: "answerC",
     },
 ]
 
@@ -65,7 +65,7 @@ let score = 0
 var scores = []
 var initials = []
 
-var secondsLeft = 30
+var secondsLeft = 180
 
 // function to set timer. 
 function setTime() {

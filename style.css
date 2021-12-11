@@ -42,7 +42,7 @@ h2 {
 .question-container {
     font-size: 26px;
     font-weight: bold;
-    border: dotted 2px black;
+    border: solid 2px black;
     margin-right: 100px;
     margin-left: 100px;
 
@@ -52,8 +52,8 @@ h2 {
     display: flex;
     flex-direction: column;
     padding: 20px;
-    margin-right: 100px;
-    margin-left: 100px;
+    margin-right: 500px;
+    margin-left: 500px;
 }
 
 .hide {
