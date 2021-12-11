@@ -13,26 +13,25 @@
                <h2>Click on the button to get started!</h2>  
           </div> 
           <button type="button" class="btn" id="btn-start">Start Quiz</button>
-          <button type="button" class="btn" id="btn-submit">Submit Quiz</button>
-     <div class="quiz">
-          <div class="question"> <h2>What is the answer?</h2> 
-               <div class="answer">
-               <div class="choices">
-                    <p class="choice-prefix">A</p>
-                    <p class="choice-text" data-number="1"></p>
-                </div>
-                <div class="choices">
-                    <p class="choice-prefix">B</p>
-                    <p class="choice-text" data-number="2"></p>
-                </div>
-                <div class="choices">
-                    <p class="choice-prefix">C</p>
-                    <p class="choice-text" data-number="3"></p>
-                </div>
+     <div class="quiz-container" id="quiz">
+               <div class="question-container hide" id="question">Question:</div>
+               <div class="choice-container hide">
+                    <button class="option" id="op1" onclick="scoreAnswer('A')">A</button>
+                    <button class="option" id="op2" onclick="scoreAnswer('B')">B</button>
+                    <button class="option" id="op3" onclick="scoreAnswer('C')">C</button>
+               <div class="check-answer hide" id="check-answer">Correct Answer is:</div>
+               </div>
+               <div class="scoring-nav" id="scoring-nav">
+                    <div class="score hide" id="score">Score:
+                         <div class="initials hide" id="initials">Enter your initials:
+                              <input class="enter-initials" id="enter-initials" type="text">
+                         </div>
+                    </div>
+                    <button type="button" class="btn hide" id="btn-submit">Submit</button>
+                    <button type="button" class="btn hide" id="btn-skip">Skip</button>
+                    <div class="timer hide"  id="timer">Timer:</div>
                </div>
           </div>
-          <div id="score">
-               <div class="timer"></div>
           </div>
      </div>
      </div>

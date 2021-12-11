@@ -1,0 +1,26 @@
+Notes
+
+// function for quiz creation
+/* function buildQuiz() {
+    var output = [];
+    myQuestions.forEach(
+        (currentQuestion, questionNumber) => {
+            var answers = [];
+            for (letter in currentQuestion.answers){
+                answers.push(
+                    <label>
+                        <input type="radio" name="question${questionNumber)" value="${letter}"></input>
+                        ${letter} :
+                        ${currentQuestion.answers[letter]}
+                    </label>
+                );
+            }
+            output.push(
+              `<div id="question"> ${currentQuestion.question} </div>
+                <div id="answer"> ${answers.join('')} </div>`
+            );
+        }
+    );
+}
+
+quizEl.innerHTML = output.join(''); */
