@@ -17,10 +17,7 @@ var op3 = document.getElementById('op3');
 var op4 = document.getElementById('op4');
 var initialsContainer = document.querySelector('.initials')
 var enterInit = document.querySelector('.enter-initials')
-var scoringNav = document.querySelector('.scoring.nav')
-
-
-
+var scoringNav = document.querySelector('.scoring-nav')
 
 
 // quiz questions
@@ -75,6 +72,7 @@ function setTime() {
     headers.classList.add('hide')
     startBtn.classList.add('hide')
     scoreQuiz.classList.remove('hide')
+    scoringNav.classList.remove('hide')
     submitBtn.classList.add("show")
     nextBtn.classList.add('show')
     timerEl.classList.add('show')
@@ -136,16 +134,20 @@ function scoreAnswer(correctAnswer) {
         currentQuestionIndex ++
         showQuestions()
     } else {
-        questionContainer.classList.remove('show')
+        question.classList.remove('show')
         choiceContainer.classList.remove('show')
+        correctChoice.classList.remove('hide')
+        correctChoice.classList.add('show')
         nextBtn.classList.remove('show')
-        initialsContainer.classList.add('show') //not working
-        scoreQuiz.textContent = score
-        endQuestion() //not working
+        nextBtn.classList.add('hide')
+        initialsContainer.classList.remove('hide')
+        scoreQuiz.textContent = "Total Score:" + score
+        endQuestion() 
     }
 }
 
 function endQuestion() {
+    timerEl.classList.remove('show')
     correctChoice.textContent = "Congrats! You have beat the clock. Press submit to store your score."
 }
 
@@ -158,7 +160,7 @@ function startQuiz() {
 startBtn.addEventListener("click", startQuiz);
 
 function storeScore() {
-    localStorage.setItem("score", JSON.stringify(scores))
+    localStorage.setItem("score", JSON.stringify(score))
     localStorage.setItem("initials", JSON.stringify(initials))
 }
 
@@ -167,9 +169,10 @@ var totalScore = document.querySelector(".total-score")
 var highInit = document.querySelector('.high-initials')
 
 function renderHighScore() {
+    highScore.classList.remove('hide')
     totalScore.innerHTML = ""
     highInit.innerHTML = ""
-    var initials = JSON.parse(localStorage.getItems("initials"))
+    var initials = JSON.parse(localStorage.getItem("initials"))
     var scores = JSON.parse(localStorage.getItem("score"))
 
     for (var i = 0; i < initials.length; i++)
@@ -179,21 +182,38 @@ function renderHighScore() {
         highInit.textContent = initial
 }
 
+
 submitBtn.addEventListener("click", submitBtnHandler)
 
 
 function submitBtnHandler() {
-    var initials = enterInit.value
+    var initial = enterInit.value.trim()
     var scoreEl = scoreQuiz.innerHTML
 
     if (initials === "") {
         return;
     }
-        initials.push(initials)
+        initials.push(initial)
         scores.push(scoreEl)
         enterInit.value = ""
-        storeScore()
-        renderHighScore()
         scoringNav.classList.add('hide')
         highScore.classList.remove('hide')
+        storeScore()
+        renderHighScore()
 }
+
+function init() {
+  
+    var storedInitial = JSON.parse(localStorage.getItem("initials"));
+    var storedScore = JSON.parse(localStorage.getItem("scores"));
+  
+    
+    if (storedInitial !== null) {
+      initials = storedInitial;
+      scores = storedScore;
+    }
+    renderHighScore()
+  
+  }
+
+  
