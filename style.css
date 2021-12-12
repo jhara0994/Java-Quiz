@@ -7,7 +7,7 @@
 body {
     background-color: peachpuff;
     font-family:'Courier New', Courier, monospace;
-    color: black;
+    background: linear-gradient(rgb(45, 184, 202), rgb(44, 52, 205))
 }
 
 h1 {
@@ -70,8 +70,16 @@ h2 {
     margin-bottom: 10px;
 }
 
+.score {
+    padding-bottom: 20px;
+    font-weight: bold;
+    font-size: 26px;
+}
+
 #timer{
+    font-size: 18px;
     font-weight: bold;
     text-align: center;
+    padding-top: 10px;
 }
 

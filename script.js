@@ -13,6 +13,7 @@ var op1 = document.getElementById('op1');
 var op2 = document.getElementById('op2');
 var op3 = document.getElementById('op3');
 var op4 = document.getElementById('op4');
+var initialsContainer = document.querySelector('.initials')
 var enterInit = document.querySelector('.enter-initials')
 var scoringNav = document.querySelector('.scoring.nav')
 
@@ -65,12 +66,13 @@ let score = 0
 var scores = []
 var initials = []
 
-var secondsLeft = 180
+var secondsLeft = 120
 
 // function to set timer. 
 function setTime() {
     headers.classList.add('hide')
     startBtn.classList.add('hide')
+    scoreQuiz.classList.remove('hide')
     submitBtn.classList.add("show")
     nextBtn.classList.add('show')
     timerEl.classList.add('show')
@@ -111,24 +113,29 @@ function rightAnswer() {
 }
 
 function wrongAnswer() {
-    correctChoice.innerHTML = "Wrong!"
+    correctChoice.innerHTML = "Unfortunate!  -20 seconds"
     secondsLeft = (secondsLeft - 20) < 0 ? 1 : (secondsLeft - 20)
+    score - 5
 }
 
+let q = myQuestions[currentQuestionIndex]
 function scoreAnswer(answer) {
     correctChoice.classList.remove('hide')
 
-    if(myQuestions[currentQuestionIndex].correctAnswer === answer) {
+    if(answer === q.correctAnswer) {
         rightAnswer()
     } else {
         wrongAnswer()
     }
 
-    if(currentQuestionIndex < myQuestions.length){
+    if(currentQuestionIndex < 2){
         currentQuestionIndex ++
         showQuestions()
     } else {
-        questionContainer.classList.add('hide')
+        questionContainer.classList.remove('show')
+        choiceContainer.classList.remove('show')
+        nextBtn.classList.remove('show')
+        initialsContainer.classList.add('show')
         scoreQuiz.textContent = score
         endQuestion()
     }
@@ -141,7 +148,7 @@ function endQuestion() {
 // function to start quiz
 function startQuiz() {
     setTime()
-    showQuestions()
+    scoreAnswer()
 }
 
 startBtn.addEventListener("click", startQuiz);
