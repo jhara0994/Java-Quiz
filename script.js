@@ -190,6 +190,8 @@ function submitBtnHandler() {
     var initial = enterInit.value.trim()
     var scoreEl = scoreQuiz.innerHTML
 
+    submitBtn.classList.add('hide')
+
     if (initials === "") {
         return;
     }
@@ -205,12 +207,12 @@ function submitBtnHandler() {
 function init() {
   
     var storedInitial = JSON.parse(localStorage.getItem("initials"));
-    var storedScore = JSON.parse(localStorage.getItem("scores"));
+    var storedScore = JSON.parse(localStorage.getItem("score"));
   
     
     if (storedInitial !== null) {
       initials = storedInitial;
-      scores = storedScore;
+      score = storedScore;
     }
     renderHighScore()
   
